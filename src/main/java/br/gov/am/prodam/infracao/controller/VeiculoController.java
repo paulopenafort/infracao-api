@@ -45,7 +45,8 @@ public class VeiculoController extends BasicController{
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{veiculoID}")
-	public void  apagarVeiculo(@PathParam("{veiculoID}")long id) {
+	public void  apagarVeiculo(@PathParam("veiculoID")long id) {
+		System.out.println("ID" + id);
 		veiculoService.deleteVeiculo(id);
 	}
 	
