@@ -8,6 +8,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.controller.InfracaoController;
+import br.gov.am.prodam.infracao.controller.VeiculoController;
 
 @Component
 @ApplicationPath(JerseyConfig.API_VERSION)
@@ -26,6 +27,7 @@ public class JerseyConfig extends ResourceConfig {
 	@PostConstruct
 	public void setup() {
 		register(InfracaoController.class);
+		register(VeiculoController.class);
 		property(org.glassfish.jersey.server.ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

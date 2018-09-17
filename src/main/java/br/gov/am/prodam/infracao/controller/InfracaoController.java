@@ -38,7 +38,6 @@ public class InfracaoController extends BasicController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{infracaoId}")
 	public InfracaoDTO findById(@PathParam("infracaoId") Long id) {
-
 		Infracao infracao = infracaoService.findById(id);
 		return map(infracao, InfracaoDTO.class);
 	}

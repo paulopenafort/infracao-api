@@ -23,6 +23,7 @@ public class InfracaoService {
 	}
 
 	public Infracao findById(Long id) {
+		System.out.println("ID 2222");
 		return infracaoRepository.findById(id).get();
 	}
 
