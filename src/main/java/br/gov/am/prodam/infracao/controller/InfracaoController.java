@@ -39,7 +39,7 @@ public class InfracaoController extends BasicController {
 	@Path("{infracaoId}")
 	public InfracaoDTO findById(@PathParam("infracaoId") Long id) {
 
-		Infracao infracao = infracaoService.findById(id);
+		Infracao infracao = infracaoService.findById(id).get();
 		return map(infracao, InfracaoDTO.class);
 	}
 
@@ -60,7 +60,7 @@ public class InfracaoController extends BasicController {
 
 		Infracao infracao = map(dto, Infracao.class);
 
-		infracaoService.salvar(infracao);
+		infracaoService.save(infracao);
 
 		return Response.ok().build();
 	}

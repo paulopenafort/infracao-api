@@ -18,9 +18,7 @@ public class BasicController {
 	}
 
 	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
-
 		return Util.buildDTO(obj, classDTO, propertyMap);
-
 	}
 
 	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
