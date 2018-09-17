@@ -52,7 +52,7 @@ public class VeiculoController extends BasicController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{id}/listagem/")
+	@Path("{id}")
 	public VeiculoDTO localizarPorID(@PathParam("id") Long id) {
 		System.out.println(id + ": ID");
 		Veiculo veiculo = veiculoService.findById(id).get();
