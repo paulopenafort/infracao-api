@@ -16,7 +16,6 @@ public class JerseyConfig extends ResourceConfig {
 
 	public static final String API_VERSION = "/api/v1";
 	
-
 	@Autowired
 	private ApplicationContext appContext;
 

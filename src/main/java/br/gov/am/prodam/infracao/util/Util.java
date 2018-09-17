@@ -48,14 +48,14 @@ public final class Util {
 		return !isNull(lista);
 	}
 
-	public static <TO, DTO> List<DTO> buildListDTO(List<TO> lista, Class<DTO> classDTO,
+	public static <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO,
 			PropertyMap<TO, DTO> propertyMap) {
 
 		ArrayList<DTO> listaDTO = new ArrayList<>();
 
 		if (!lista.isEmpty()) {
 			for (TO obj : lista) {
-				listaDTO.add(buildDTO(obj, classDTO, propertyMap));
+				listaDTO.add(map(obj, classDTO, propertyMap));
 			}
 		}
 
@@ -63,10 +63,10 @@ public final class Util {
 	}
 
 	public static <TO, DTO> List<DTO> buildListDTO(List<TO> lista, Class<DTO> classDTO) {
-		return buildListDTO(lista, classDTO, null);
+		return mapList(lista, classDTO, null);
 	}
 
-	public static <TO, DTO> DTO buildDTO(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
+	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
 
 		if (obj == null) {
 			return null;
@@ -80,8 +80,8 @@ public final class Util {
 
 	}
 
-	public static <TO, DTO> DTO buildDTO(TO obj, Class<DTO> classDTO) {
-		return buildDTO(obj, classDTO, null);
+	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
+		return map(obj, classDTO, null);
 	}
 
 	public static String formatarNumeroAuto(Long numeroAuto) {

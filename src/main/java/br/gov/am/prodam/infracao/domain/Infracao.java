@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "INFRACAO")
@@ -20,8 +19,7 @@ public class Infracao {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INFRACAO_GENERATOR")
 	private Long id;
 
-	@Column(name = "DESCRICAO", nullable = false, length = 255)
-	@NotNull
+	@Column(name = "DESCRICAO", nullable = false)
 	private String descricao;
 
 	@Enumerated(EnumType.STRING)

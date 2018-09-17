@@ -29,7 +29,8 @@ public class InfracaoController extends BasicController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<InfracaoDTO> findAll() {
+	public List<InfracaoDTO> findAll() {	
+		
 		List<Infracao> infracoes = infracaoService.findAll();
 		return mapList(infracoes, InfracaoDTO.class);
 	}

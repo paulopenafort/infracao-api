@@ -10,7 +10,7 @@ public class BasicController {
 
 	public static <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
 
-		return Util.buildListDTO(lista, classDTO, propertyMap);
+		return Util.mapList(lista, classDTO, propertyMap);
 	}
 
 	public static <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO) {
@@ -18,7 +18,9 @@ public class BasicController {
 	}
 
 	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
-		return Util.buildDTO(obj, classDTO, propertyMap);
+
+		return Util.map(obj, classDTO, propertyMap);
+
 	}
 
 	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
