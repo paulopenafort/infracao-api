@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
+import br.gov.am.prodam.infracao.dto.Resposta;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component
@@ -29,8 +30,8 @@ public class InfracaoController extends BasicController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<InfracaoDTO> findAll() {	
-		
+	public List<InfracaoDTO> findAll() {
+
 		List<Infracao> infracoes = infracaoService.findAll();
 		return mapList(infracoes, InfracaoDTO.class);
 	}
@@ -51,8 +52,10 @@ public class InfracaoController extends BasicController {
 
 		infracaoService.delete(id);
 
-		return Response.ok().build();
+		return ok("Infracao deletada com sucesso!");
 	}
+
+	
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -63,7 +66,7 @@ public class InfracaoController extends BasicController {
 
 		infracaoService.save(infracao);
 
-		return Response.ok().build();
+		return ok("Infracao Salva com sucesso!");
 	}
 
 }

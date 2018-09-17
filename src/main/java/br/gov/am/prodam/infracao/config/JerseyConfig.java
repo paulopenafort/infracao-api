@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
+import br.gov.am.prodam.infracao.exception.AppExceptionMapper;
+
 @Configuration
 @ApplicationPath(JerseyConfig.API_VERSION)
 public class JerseyConfig extends ResourceConfig {
@@ -29,6 +31,8 @@ public class JerseyConfig extends ResourceConfig {
 	}
 
 	public void configJersey() {
+		
+		register(AppExceptionMapper.class);
 		
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
