@@ -2,46 +2,42 @@ package br.gov.am.prodam.infracao.config;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Path;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
-import br.gov.am.prodam.infracao.controller.InfracaoController;
-
-@Component
+@Configuration
 @ApplicationPath(JerseyConfig.API_VERSION)
 public class JerseyConfig extends ResourceConfig {
 
 	public static final String API_VERSION = "/api/v1";
 
-	//@Autowired
-	//private ApplicationContext appContext;
-
-
+	@Autowired
+	private ApplicationContext appContext;
 
 	public JerseyConfig() {
 	}
 
 	@PostConstruct
 	public void setup() {
-		register(InfracaoController.class);
-		property(org.glassfish.jersey.server.ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
-		property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
-		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
-		property(org.glassfish.jersey.server.ServerProperties.BV_FEATURE_DISABLE, false);
+		configJersey();
+		registerControllers();
 	}
 
-	/*@PostConstruct
-	public void init() {
+	public void configJersey() {
+		
+		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+		property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
+		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+		property(ServerProperties.BV_FEATURE_DISABLE, false);
+	}
 
-		Map<String, Object> beans = appContext.getBeansWithAnnotation(Path.class);
-
-		for (Map.Entry<String, Object> bean : beans.entrySet()) {
-			register(bean.getValue());
-		}
-
-	}*/
-
+	public void registerControllers() {
+		appContext.getBeansWithAnnotation(Path.class).forEach((name, bean) -> register(bean));
+	}
 
 }
