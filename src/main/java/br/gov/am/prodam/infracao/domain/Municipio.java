@@ -2,15 +2,20 @@ package br.gov.am.prodam.infracao.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="MUNICIPIO")
+@SequenceGenerator(name = "MUNICIPIO_GENERATOR", sequenceName = "MUNICIPIO_SEQ", allocationSize = 1)
 public class Municipio {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MUNICIPIO_GENERATOR")
 	private Long id;
 	
 	@Column(name="NOME", length=50, nullable=false)
