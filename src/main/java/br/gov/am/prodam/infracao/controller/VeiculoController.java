@@ -46,7 +46,6 @@ public class VeiculoController extends BasicController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{veiculoID}")
 	public void apagarVeiculo(@PathParam("veiculoID") long id) {
-		System.out.println("ID" + id);
 		veiculoService.delete(id);
 	}
 
@@ -54,7 +53,6 @@ public class VeiculoController extends BasicController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{id}")
 	public VeiculoDTO localizarPorID(@PathParam("id") Long id) {
-		System.out.println(id + ": ID");
 		Veiculo veiculo = veiculoService.findById(id).get();
 		return map(veiculo, VeiculoDTO.class);
 	}
