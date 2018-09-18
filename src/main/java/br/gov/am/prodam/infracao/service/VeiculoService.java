@@ -12,7 +12,7 @@ import br.gov.am.prodam.infracao.repository.VeiculoRepository;
 public class VeiculoService extends BasicService<Veiculo, Long, VeiculoRepository>  {
 	
 	@Override
-	public Veiculo save(Veiculo veiculo) {
+	public Veiculo save(Veiculo veiculo) {	
 		
 		Optional<Veiculo> optVeiculo = this.repository.findByPlaca(veiculo.getPlaca());
 		if(optVeiculo.isPresent()) {
