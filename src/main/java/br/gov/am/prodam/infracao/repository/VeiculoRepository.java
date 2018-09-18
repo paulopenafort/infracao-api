@@ -10,9 +10,6 @@ import br.gov.am.prodam.infracao.domain.Veiculo;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 	
-	public Optional<Veiculo> findByPlaca(String placa);
-	
-	public Optional<Veiculo> findByRenavam(String renavam);
-	
+	public Optional<Veiculo> findByPlacaOrRenavam(String placa, String Renavam);
 	
 }

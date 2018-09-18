@@ -12,9 +12,8 @@ import br.gov.am.prodam.infracao.repository.VeiculoRepository;
 public class VeiculoService extends BasicService<Veiculo, Long, VeiculoRepository>  {
 	
 	@Override
-	public Veiculo save(Veiculo veiculo) {	
-		
-		Optional<Veiculo> optVeiculo = this.repository.findByPlaca(veiculo.getPlaca());
+	public Veiculo save(Veiculo veiculo) {		
+		Optional<Veiculo> optVeiculo = this.repository.findByPlacaOrRenavam(veiculo.getPlaca(), veiculo.getRenavam());
 		if(optVeiculo.isPresent()) {
 			throw new AppException("Não foi possível salvar o veículo: "+veiculo.getPlaca());
 		}
