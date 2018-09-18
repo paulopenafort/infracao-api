@@ -39,14 +39,15 @@ public class VeiculoController extends BasicController {
 	public Response salvar(@Valid VeiculoDTO veiculoDTO) {
 		Veiculo veiculo = map(veiculoDTO, Veiculo.class);
 		veiculoService.save(veiculo);
-		return Response.ok().build();
+		return ok("Veículo salvo com sucesso!");
 	}
 
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{veiculoID}")
-	public void apagarVeiculo(@PathParam("veiculoID") long id) {
+	public Response apagarVeiculo(@PathParam("veiculoID") long id) {
 		veiculoService.delete(id);
+		return ok("Veículo deletado com sucesso!");
 	}
 
 	@GET

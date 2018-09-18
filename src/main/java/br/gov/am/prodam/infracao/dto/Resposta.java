@@ -6,12 +6,7 @@ public class Resposta {
 	private String mensagem;
 	private String erro;
 	private boolean sucesso;
-	
-	
-	
-	
-	
-	
+		
 	public Resposta(String mensagem, String erro, boolean sucesso) {
 		super();
 		this.mensagem = mensagem;
@@ -28,7 +23,6 @@ public class Resposta {
 	public Resposta(String mensagem) {
 		super();
 		this.mensagem = mensagem;
-		this.sucesso = sucesso;
 	}
 	
 	
@@ -50,7 +44,5 @@ public class Resposta {
 	public void setSucesso(boolean sucesso) {
 		this.sucesso = sucesso;
 	}
-	
-	
 
 }
