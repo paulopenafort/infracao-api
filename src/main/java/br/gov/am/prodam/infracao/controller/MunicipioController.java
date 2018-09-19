@@ -47,7 +47,7 @@ public class MunicipioController extends BasicController {
 	@Path("{infracaoId}")
 	public Response delete(@PathParam("infracaoId") Long id) {
 		municipioService.delete(id);
-		return Response.ok().build();
+		return ok("Municipio deletado com sucesso");
 	}
 
 	@POST
@@ -56,7 +56,7 @@ public class MunicipioController extends BasicController {
 	public Response salvar(@Valid MunicipioDTO dto) {
 		Municipio municipio = map(dto, Municipio.class);
 		municipioService.save(municipio);
-		return Response.ok().build();
+		return ok("Municipio salvo com sucesso");
 	}
 
 }
