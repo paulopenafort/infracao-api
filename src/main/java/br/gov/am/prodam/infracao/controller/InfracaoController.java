@@ -3,6 +3,7 @@ package br.gov.am.prodam.infracao.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
+import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component
@@ -28,8 +30,19 @@ public class InfracaoController extends BasicController {
 	private InfracaoService infracaoService;
 
 	@GET
+	@Path("/pesquisar")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro) {
+
+		List<Infracao> infracoes = infracaoService.pesquisar(filtro);
+
+		return mapList(infracoes, InfracaoDTO.class);
+	}
+
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<InfracaoDTO> findAll() {
+
 		List<Infracao> infracoes = infracaoService.findAll();
 		return mapList(infracoes, InfracaoDTO.class);
 	}
@@ -39,7 +52,7 @@ public class InfracaoController extends BasicController {
 	@Path("{infracaoId}")
 	public InfracaoDTO findById(@PathParam("infracaoId") Long id) {
 
-		Infracao infracao = infracaoService.findById(id);
+		Infracao infracao = infracaoService.findById(id).get();
 		return map(infracao, InfracaoDTO.class);
 	}
 
@@ -49,8 +62,7 @@ public class InfracaoController extends BasicController {
 	public Response delete(@PathParam("infracaoId") Long id) {
 
 		infracaoService.delete(id);
-
-		return Response.ok().build();
+		return ok("Infracao deletada com sucesso!");
 	}
 
 	@POST
@@ -60,9 +72,9 @@ public class InfracaoController extends BasicController {
 
 		Infracao infracao = map(dto, Infracao.class);
 
-		infracaoService.salvar(infracao);
+		infracaoService.save(infracao);
 
-		return Response.ok().build();
+		return ok("Infracao Salva com sucesso!");
 	}
 
 }

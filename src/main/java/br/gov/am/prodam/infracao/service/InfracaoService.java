@@ -2,32 +2,29 @@ package br.gov.am.prodam.infracao.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
+import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
+import br.gov.am.prodam.infracao.exception.AppException;
 import br.gov.am.prodam.infracao.repository.InfracaoRepository;
 
 @Service
-public class InfracaoService {
+public class InfracaoService extends BasicService<Infracao, Long, InfracaoRepository> {
 
-	@Autowired
-	private InfracaoRepository infracaoRepository;
+	@Override
+	public Infracao save(Infracao infracao) {
 
-	public List<Infracao> findAll() {
-		return infracaoRepository.findAll();
+		if (infracao.getDescricao().equals("123")) {
+			throw new AppException("Não possivel salvar com descricao 123", "ERRO001");
+		}
+
+		return super.save(infracao);
 	}
 
-	public Infracao salvar(Infracao infracao) {
-		return infracaoRepository.save(infracao);
-	}
+	public List<Infracao> pesquisar(InfracaoFiltro filtro) {
 
-	public Infracao findById(Long id) {
-		return infracaoRepository.findById(id).get();
-	}
-
-	public void delete(Long id) {
-		infracaoRepository.deleteById(id);
+		return repository.pesquisar(filtro);
 	}
 
 }

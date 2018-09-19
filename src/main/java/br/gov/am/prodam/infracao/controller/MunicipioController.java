@@ -22,42 +22,41 @@ import br.gov.am.prodam.infracao.service.MunicipioService;
 
 @Component
 @Path("/municipio")
-public class MunicipioController extends BasicController{
-	
+public class MunicipioController extends BasicController {
+
 	@Autowired
 	private MunicipioService municipioService;
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<MunicipioDTO> findAll(){
+	public List<MunicipioDTO> findAll() {
 		List<Municipio> municipios = municipioService.findAll();
 		return mapList(municipios, MunicipioDTO.class);
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{infracaoId}")
 	public MunicipioDTO findById(@PathParam("infracaoId") Long id) {
-		Municipio municipio = municipioService.findById(id);
+		Municipio municipio = municipioService.findById(id).get();
 		return map(municipio, MunicipioDTO.class);
 	}
-	
+
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{infracaoId}")
 	public Response delete(@PathParam("infracaoId") Long id) {
 		municipioService.delete(id);
-		return Response.ok().build();
+		return ok("Municipio deletado com sucesso");
 	}
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response salvar(@Valid MunicipioDTO dto) {
 		Municipio municipio = map(dto, Municipio.class);
-		municipioService.salvar(municipio);
-		return Response.ok().build();
+		municipioService.save(municipio);
+		return ok("Municipio salvo com sucesso");
 	}
-	
-	
+
 }
