@@ -41,6 +41,14 @@ public class OrgaoAutuador {
 	@CNPJ
 	private String cnpj;
 
+	public OrgaoAutuador() {
+	}
+
+	public OrgaoAutuador(Long id) {
+		super();
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

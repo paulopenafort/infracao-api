@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "INFRACAO")
@@ -31,6 +32,7 @@ public class Infracao {
 	private Competencia competencia;
 
 	@Column(name = "MULTIPLICADOR")
+	@Positive
 	private Integer multiplicador;
 
 	@Enumerated(EnumType.STRING)

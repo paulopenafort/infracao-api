@@ -3,6 +3,7 @@ package br.gov.am.prodam.infracao.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
+import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component
@@ -26,6 +28,16 @@ public class InfracaoController extends BasicController {
 
 	@Autowired
 	private InfracaoService infracaoService;
+
+	@GET
+	@Path("/pesquisar")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro) {
+
+		List<Infracao> infracoes = infracaoService.pesquisar(filtro);
+
+		return mapList(infracoes, InfracaoDTO.class);
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -53,8 +65,6 @@ public class InfracaoController extends BasicController {
 
 		return ok("Infracao deletada com sucesso!");
 	}
-
-	
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

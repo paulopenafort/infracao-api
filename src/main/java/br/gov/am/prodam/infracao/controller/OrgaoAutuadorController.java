@@ -16,8 +16,11 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.gov.am.prodam.infracao.domain.AgenteTransito;
 import br.gov.am.prodam.infracao.domain.OrgaoAutuador;
+import br.gov.am.prodam.infracao.dto.AgenteTransitoDTO;
 import br.gov.am.prodam.infracao.dto.OrgaoAutuadorDTO;
+import br.gov.am.prodam.infracao.service.AgenteTransitoService;
 import br.gov.am.prodam.infracao.service.OrgaoAutuadorService;
 
 @Component
@@ -27,12 +30,15 @@ public class OrgaoAutuadorController extends BasicController {
 	@Autowired
 	private OrgaoAutuadorService orgaoAutuadorService;
 
+	@Autowired
+	private AgenteTransitoService agenteTransitoService;
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<OrgaoAutuadorDTO> findAll() {
 
 		List<OrgaoAutuador> infracoes = orgaoAutuadorService.findAll();
-		
+
 		return mapList(infracoes, OrgaoAutuadorDTO.class);
 	}
 
@@ -55,8 +61,6 @@ public class OrgaoAutuadorController extends BasicController {
 		return ok("Orgão Autuador deletado com sucesso!");
 	}
 
-	
-
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -67,6 +71,18 @@ public class OrgaoAutuadorController extends BasicController {
 		orgaoAutuadorService.save(orgaoAutuador);
 
 		return ok("Orgão Autuador salvo com sucesso!");
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{orgaoAutuadorId}/agentes")
+	public List<AgenteTransitoDTO> findAgentes(@PathParam("orgaoAutuadorId") Long id) {
+
+		OrgaoAutuador orgaoAutuador = new OrgaoAutuador(id);
+
+		List<AgenteTransito> agentes = agenteTransitoService.findByOrgaoAutuador(orgaoAutuador);
+
+		return mapList(agentes, AgenteTransitoDTO.class);
 	}
 
 }
