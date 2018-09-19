@@ -62,7 +62,6 @@ public class InfracaoController extends BasicController {
 	public Response delete(@PathParam("infracaoId") Long id) {
 
 		infracaoService.delete(id);
-
 		return ok("Infracao deletada com sucesso!");
 	}
 

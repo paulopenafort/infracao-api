@@ -24,7 +24,6 @@ public class Resposta {
 		this.mensagem = mensagem;
 		this.sucesso = true;
 	}
-
 	public String getMensagem() {
 		return mensagem;
 	}
