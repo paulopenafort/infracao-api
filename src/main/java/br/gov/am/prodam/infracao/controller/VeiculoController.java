@@ -30,7 +30,7 @@ public class VeiculoController extends BasicController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<VeiculoDTO> findAll() {
 		List<Veiculo> veiculos = veiculoService.findAll();
-		return BasicController.mapList(veiculos, VeiculoDTO.class);
+		return mapList(veiculos, VeiculoDTO.class);
 	}
 
 	@POST

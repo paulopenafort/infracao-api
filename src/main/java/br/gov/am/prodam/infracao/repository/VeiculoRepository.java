@@ -8,4 +8,6 @@ import br.gov.am.prodam.infracao.domain.Veiculo;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
 
+	
+
 }

@@ -11,22 +11,19 @@ import br.gov.am.prodam.infracao.util.Util;
 
 public class BasicController {
 
-	public static <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
-
+	public <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
 		return Util.mapList(lista, classDTO, propertyMap);
 	}
 
-	public static <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO) {
+	public <TO, DTO> List<DTO> mapList(List<TO> lista, Class<DTO> classDTO) {
 		return mapList(lista, classDTO, null);
 	}
 
-	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
-
+	public <TO, DTO> DTO map(TO obj, Class<DTO> classDTO, PropertyMap<TO, DTO> propertyMap) {
 		return Util.map(obj, classDTO, propertyMap);
-
 	}
 
-	public static <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
+	public <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
 		return map(obj, classDTO, null);
 	}
 	
