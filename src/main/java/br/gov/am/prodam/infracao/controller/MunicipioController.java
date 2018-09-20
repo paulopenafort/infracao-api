@@ -36,16 +36,16 @@ public class MunicipioController extends BasicController {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{infracaoId}")
-	public MunicipioDTO findById(@PathParam("infracaoId") Long id) {
+	@Path("{municipioId}")
+	public MunicipioDTO findById(@PathParam("municipioId") Long id) {
 		Municipio municipio = municipioService.findById(id).get();
 		return map(municipio, MunicipioDTO.class);
 	}
 
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{infracaoId}")
-	public Response delete(@PathParam("infracaoId") Long id) {
+	@Path("{municipioId}")
+	public Response delete(@PathParam("municipioId") Long id) {
 		municipioService.delete(id);
 		return ok("Municipio deletado com sucesso");
 	}
