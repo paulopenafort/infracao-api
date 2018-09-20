@@ -15,11 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
 import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
+import br.gov.am.prodam.infracao.dto.Paginacao;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component
@@ -32,11 +34,12 @@ public class InfracaoController extends BasicController {
 	@GET
 	@Path("/pesquisar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro) {
+	public Page<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro, @BeanParam Paginacao paginacao) {
 
-		List<Infracao> infracoes = infracaoService.pesquisar(filtro);
+		Page<Infracao> page = infracaoService.pesquisar(filtro, paginacao.toPageable());
 
-		return mapList(infracoes, InfracaoDTO.class);
+		return page.map(item -> map(item, InfracaoDTO.class));
+
 	}
 
 	@GET

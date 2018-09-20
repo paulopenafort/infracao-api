@@ -1,7 +1,7 @@
 package br.gov.am.prodam.infracao.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
@@ -20,11 +20,12 @@ public class InfracaoService extends BasicService<Infracao, Long, InfracaoReposi
 		}
 
 		return super.save(infracao);
+
 	}
 
-	public List<Infracao> pesquisar(InfracaoFiltro filtro) {
+	public Page<Infracao> pesquisar(InfracaoFiltro filtro, Pageable pageable) {
 
-		return repository.pesquisar(filtro);
+		return repository.pesquisar(filtro, pageable);
 	}
 
 }

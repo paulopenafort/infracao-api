@@ -1,26 +1,19 @@
 package br.gov.am.prodam.infracao.repository.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
 
 @Component
-public class InfracaoDAOImpl implements InfracaoDAO {
+public class InfracaoDAOImpl extends GenericDAO<Infracao, Long> implements InfracaoDAO {
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	@SuppressWarnings("unchecked")
-	public List<Infracao> pesquisar(InfracaoFiltro filtro) {
+	public Page<Infracao> pesquisar(InfracaoFiltro filtro, Pageable pageable) {
 
 		Map<String, Object> params = new HashMap<>();
 
@@ -46,14 +39,10 @@ public class InfracaoDAOImpl implements InfracaoDAO {
 			params.put("tipoInfrator", filtro.getTipoInfrator());
 		}
 
-		Query query = entityManager.createQuery(jpql);
-
-		for (Map.Entry<String, Object> param : params.entrySet()) {
-			query.setParameter(param.getKey(), param.getValue());
-		}
-
-		return query.getResultList();
+		return findByJPQL(jpql, params, pageable);
 
 	}
+
+	
 
 }
