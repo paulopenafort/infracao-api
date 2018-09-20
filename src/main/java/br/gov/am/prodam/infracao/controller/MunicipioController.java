@@ -3,6 +3,7 @@ package br.gov.am.prodam.infracao.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Municipio;
 import br.gov.am.prodam.infracao.dto.MunicipioDTO;
+import br.gov.am.prodam.infracao.dto.MunicipioFiltro;
 import br.gov.am.prodam.infracao.service.MunicipioService;
 
 @Component
@@ -26,6 +28,14 @@ public class MunicipioController extends BasicController {
 
 	@Autowired
 	private MunicipioService municipioService;
+	
+	@GET
+	@Path("/pesquisar")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<MunicipioDTO> pesquisar(@BeanParam MunicipioFiltro filtro) {
+		List<Municipio> municipios = municipioService.pesquisar(filtro);
+		return mapList(municipios, MunicipioDTO.class);
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
