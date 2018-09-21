@@ -7,9 +7,10 @@ import javax.ws.rs.Path;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Value;
+
 import br.gov.am.prodam.infracao.exception.AppExceptionMapper;
 import br.gov.am.prodam.infracao.filter.CORSFilter;
 import io.swagger.jaxrs.config.BeanConfig;
