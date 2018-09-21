@@ -52,7 +52,8 @@ public abstract class GenericDAO<T, I> {
 
 		query.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
 		query.setMaxResults(pageable.getPageSize());
-
+		
+		
 		List<T> content = query.getResultList();
 
 		long total = getTotal(jpql, params);
