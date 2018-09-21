@@ -1,5 +1,6 @@
 package br.gov.am.prodam.infracao.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -26,9 +27,16 @@ public class BasicController {
 	public <TO, DTO> DTO map(TO obj, Class<DTO> classDTO) {
 		return map(obj, classDTO, null);
 	}
-	
+
 	public Response ok(String mensagem) {
 		return Response.ok(new Resposta(mensagem, true)).build();
+	}
+
+	public Response created(String mensagem, URI location) {
+
+		Resposta resposta = new Resposta(mensagem, true);
+
+		return Response.created(location).entity(resposta).build();
 	}
 
 }
