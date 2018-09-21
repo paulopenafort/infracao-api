@@ -32,16 +32,6 @@ public class InfracaoController extends BasicController {
 	private InfracaoService infracaoService;
 
 	@GET
-	@Path("/pesquisar")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro) {
-
-		Page<Infracao> page = infracaoService.pesquisar(filtro, paginacao.toPageable());
-
-		return page.map(item -> map(item, InfracaoDTO.class));
-	}
-
-	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Page<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro, @BeanParam Paginacao paginacao) {
 
@@ -51,15 +41,6 @@ public class InfracaoController extends BasicController {
 
 	}
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Page<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro, @BeanParam Paginacao paginacao) {
-
-		Page<Infracao> page = infracaoService.pesquisar(filtro, paginacao.toPageable());
-
-		return page.map(item -> map(item, InfracaoDTO.class));
-
-	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
