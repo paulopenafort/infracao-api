@@ -1,7 +1,7 @@
 package br.gov.am.prodam.infracao.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.gov.am.prodam.infracao.domain.Municipio;
@@ -21,9 +21,8 @@ public class MunicipioService extends BasicService<Municipio, Long, MunicipioRep
 		return super.save(municipio);
 	}
 	
-	public List<Municipio> pesquisar(MunicipioFiltro filtro) {
-		return repository.pesquisar(filtro);
-//		return  br.gov.am.prodam.infracao.repository.dao.MunicipioDAO.pesquisar(filtro);
+	public Page<Municipio> pesquisar(MunicipioFiltro filtro, Pageable pageable) {
+		return repository.pesquisar(filtro, pageable);
 
 	}
 
