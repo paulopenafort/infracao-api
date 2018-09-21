@@ -1,5 +1,6 @@
 package br.gov.am.prodam.infracao.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,8 +12,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,16 +25,19 @@ import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
 import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
 import br.gov.am.prodam.infracao.dto.Paginacao;
+import br.gov.am.prodam.infracao.dto.Resposta;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component
 @Path("/infracao")
+@io.swagger.annotations.Api
 public class InfracaoController extends BasicController {
 
 	@Autowired
 	private InfracaoService infracaoService;
 
 	@GET
+	@Path("/pesquisar")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Page<InfracaoDTO> pesquisar(@BeanParam InfracaoFiltro filtro, @BeanParam Paginacao paginacao) {
 
@@ -71,13 +77,17 @@ public class InfracaoController extends BasicController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response salvar(@Valid InfracaoDTO dto) {
+	public Response salvar(@Valid InfracaoDTO dto, @Context UriInfo uriInfo) {
 
 		Infracao infracao = map(dto, Infracao.class);
 
 		infracaoService.save(infracao);
-
-		return ok("Infracao Salva com sucesso!");
+				
+		URI location = uriInfo.getRequestUriBuilder()
+				.path(infracao.getId().toString())
+				.build();
+		
+		return created("Infracao Salva com sucesso!", location);
 	}
 
 }

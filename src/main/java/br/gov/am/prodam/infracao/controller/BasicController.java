@@ -1,5 +1,6 @@
 package br.gov.am.prodam.infracao.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -29,6 +30,13 @@ public class BasicController {
 	
 	public Response ok(String mensagem) {
 		return Response.ok(new Resposta(mensagem, true)).build();
+	}
+	
+	public Response created(String mensagem, URI location) {
+
+		Resposta resposta = new Resposta(mensagem, true);
+
+		return Response.created(location).entity(resposta).build();
 	}
 
 }
