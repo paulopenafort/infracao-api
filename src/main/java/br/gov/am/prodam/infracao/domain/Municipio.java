@@ -25,7 +25,7 @@ public class Municipio {
 	@Column(name="DESCRICAO", length=250, nullable=true)
 	private String descricao;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

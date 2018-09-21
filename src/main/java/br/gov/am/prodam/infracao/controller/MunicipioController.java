@@ -1,5 +1,6 @@
 package br.gov.am.prodam.infracao.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,8 +12,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,9 +24,11 @@ import br.gov.am.prodam.infracao.domain.Municipio;
 import br.gov.am.prodam.infracao.dto.MunicipioDTO;
 import br.gov.am.prodam.infracao.dto.MunicipioFiltro;
 import br.gov.am.prodam.infracao.service.MunicipioService;
+import io.swagger.annotations.Api;
 
 @Component
 @Path("/municipio")
+@Api
 public class MunicipioController extends BasicController {
 
 	@Autowired
@@ -64,10 +69,13 @@ public class MunicipioController extends BasicController {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response salvar(@Valid MunicipioDTO dto) {
+	public Response salvar(@Valid MunicipioDTO dto, @Context UriInfo uriInfo) {
 		Municipio municipio = map(dto, Municipio.class);
 		municipioService.save(municipio);
-		return ok("Municipio salvo com sucesso");
+		URI location = uriInfo.getRequestUriBuilder()
+				.path(municipio.getId().toString())
+				.build();
+		return created("Municipio salvo com sucesso", location);
 	}
 
 }
