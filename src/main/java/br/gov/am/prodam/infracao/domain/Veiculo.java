@@ -21,6 +21,18 @@ public class Veiculo {
 	
 	@Column(name = "RENAVAM", nullable = false, length = 15)
 	private String renavam;
+	
+	@Column(name = "NOME", nullable = false)
+	private String nome;
+	
+	@Column(name = "COR", nullable = false)
+	private String cor;
+	
+	@Column(name = "MARCA", nullable = false)
+	private String marca;
+	
+	@Column(name = "ANOMODELO", nullable = false)
+	private int anoModelo;
 
 	public Long getId() {
 		return id;
@@ -44,6 +56,38 @@ public class Veiculo {
 
 	public void setRenavam(String renavam) {
 		this.renavam = renavam;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	
+	public int getAnoModelo() {
+		return anoModelo;
+	}
+
+	public void setAnoModelo(int anoModelo) {
+		this.anoModelo = anoModelo;
 	}
 
 	@Override
@@ -87,3 +131,4 @@ public class Veiculo {
 	
 
 }
+

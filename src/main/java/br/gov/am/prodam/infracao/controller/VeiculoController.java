@@ -3,6 +3,7 @@ package br.gov.am.prodam.infracao.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,10 +19,13 @@ import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Veiculo;
 import br.gov.am.prodam.infracao.dto.VeiculoDTO;
+import br.gov.am.prodam.infracao.dto.VeiculoFiltro;
 import br.gov.am.prodam.infracao.service.VeiculoService;
+import io.swagger.annotations.Api;
 
 @Component
 @Path("/veiculo")
+@Api
 public class VeiculoController extends BasicController {
 	@Autowired
 	private VeiculoService veiculoService;
@@ -30,6 +34,14 @@ public class VeiculoController extends BasicController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<VeiculoDTO> findAll() {
 		List<Veiculo> veiculos = veiculoService.findAll();
+		return mapList(veiculos, VeiculoDTO.class);
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/pesquisar")
+	public List<VeiculoDTO> pesquisa(@BeanParam VeiculoFiltro filtro) {
+		List<Veiculo> veiculos = veiculoService.pesquisar(filtro);		
 		return mapList(veiculos, VeiculoDTO.class);
 	}
 
@@ -59,3 +71,4 @@ public class VeiculoController extends BasicController {
 	}
 
 }
+

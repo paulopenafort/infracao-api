@@ -1,24 +1,20 @@
 package br.gov.am.prodam.infracao.dto;
 
+import javax.ws.rs.QueryParam;
 
-
-public class VeiculoDTO {
-	
-	private Long id;
-	
-	private String placa;
-	
-	private String renavam;
-	
+public class VeiculoFiltro {
+	@QueryParam("nome")
 	private String nome;
 	
+	@QueryParam("cor")
 	private String cor;
 	
+	@QueryParam("marca")
 	private String marca;
 	
+	@QueryParam("anomodelo")
 	private int anoModelo;
-	
-	
+		
 	public int getAnoModelo() {
 		return anoModelo;
 	}
@@ -51,30 +47,4 @@ public class VeiculoDTO {
 		this.marca = marca;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
-	public String getRenavam() {
-		return renavam;
-	}
-
-	public void setRenavam(String renavam) {
-		this.renavam = renavam;
-	}
-	
-
 }
-
