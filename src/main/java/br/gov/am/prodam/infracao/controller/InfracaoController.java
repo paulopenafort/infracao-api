@@ -25,7 +25,6 @@ import br.gov.am.prodam.infracao.domain.Infracao;
 import br.gov.am.prodam.infracao.dto.InfracaoDTO;
 import br.gov.am.prodam.infracao.dto.InfracaoFiltro;
 import br.gov.am.prodam.infracao.dto.Paginacao;
-import br.gov.am.prodam.infracao.dto.Resposta;
 import br.gov.am.prodam.infracao.service.InfracaoService;
 
 @Component

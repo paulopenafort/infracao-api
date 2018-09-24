@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Path;
 
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,12 @@ import io.swagger.jaxrs.listing.SwaggerSerializers;
 public class JerseyConfig extends ResourceConfig {
 
 	public static final String API_VERSION = "/api/v1";
-	
+
 	@Autowired
 	private ApplicationContext appContext;
-	
-	
-	@Value("${spring.jersey.application-path:"+API_VERSION+"}")
-	private String apiPath;
 
+	@Value("${spring.jersey.application-path:" + API_VERSION + "}")
+	private String apiPath;
 
 	public JerseyConfig() {
 	}
@@ -42,10 +41,11 @@ public class JerseyConfig extends ResourceConfig {
 	}
 
 	public void configJersey() {
-		
+
 		register(AppExceptionMapper.class);
 		register(CORSFilter.class);
-		
+		register(MultiPartFeature.class);
+
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
 		property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
@@ -55,8 +55,7 @@ public class JerseyConfig extends ResourceConfig {
 	public void registerControllers() {
 		appContext.getBeansWithAnnotation(Path.class).forEach((name, bean) -> register(bean));
 	}
-	
-	
+
 	private void configureSwagger() {
 		this.register(ApiListingResource.class);
 		this.register(SwaggerSerializers.class);

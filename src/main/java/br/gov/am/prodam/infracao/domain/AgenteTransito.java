@@ -41,6 +41,13 @@ public class AgenteTransito {
 	@ManyToOne
 	@JoinColumn(name = "ID_ORGAO_AUTUADOR", nullable = false)
 	private OrgaoAutuador orgaoAutuador;
+	
+	public AgenteTransito() {
+	}
+
+	public AgenteTransito(Long id) {
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

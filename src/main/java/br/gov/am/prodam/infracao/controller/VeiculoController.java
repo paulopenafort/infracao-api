@@ -23,6 +23,7 @@ import br.gov.am.prodam.infracao.service.VeiculoService;
 @Component
 @Path("/veiculo")
 public class VeiculoController extends BasicController {
+	
 	@Autowired
 	private VeiculoService veiculoService;
 
