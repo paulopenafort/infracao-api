@@ -12,6 +12,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 	
 	public Optional<Veiculo> findByPlacaOrRenavam(String placa, String Renavam);
 	
+
 	
 
 }

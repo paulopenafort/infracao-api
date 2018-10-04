@@ -11,6 +11,8 @@ import br.gov.am.prodam.infracao.repository.InfracaoRepository;
 
 @Service
 public class InfracaoService extends BasicService<Infracao, Long, InfracaoRepository> {
+	
+	
 
 	@Override
 	public Infracao save(Infracao infracao) {

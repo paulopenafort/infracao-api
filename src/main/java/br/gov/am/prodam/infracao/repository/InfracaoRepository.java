@@ -14,5 +14,7 @@ public interface InfracaoRepository extends JpaRepository<Infracao, Long>, Infra
 	
 	
 	public List<Infracao> findByCompetencia(String competencia, Pageable pageable);
+	
+	
 
 }
