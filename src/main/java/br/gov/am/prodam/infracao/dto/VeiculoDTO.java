@@ -9,6 +9,8 @@ public class VeiculoDTO {
 	private String placa;
 	
 	private String renavam;
+	
+	private String foto;
 
 	public Long getId() {
 		return id;
@@ -32,6 +34,14 @@ public class VeiculoDTO {
 
 	public void setRenavam(String renavam) {
 		this.renavam = renavam;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 

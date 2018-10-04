@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,6 +22,10 @@ public class Veiculo {
 	
 	@Column(name = "RENAVAM", nullable = false, length = 15)
 	private String renavam;
+	
+	@Column(name = "FOTO", columnDefinition = "BLOB")
+	@Lob
+	private String foto;
 
 	public Long getId() {
 		return id;
@@ -44,6 +49,14 @@ public class Veiculo {
 
 	public void setRenavam(String renavam) {
 		this.renavam = renavam;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override
