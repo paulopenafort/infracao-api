@@ -1,12 +1,13 @@
 package br.gov.am.prodam.infracao.repository.dao;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import br.gov.am.prodam.infracao.domain.Municipio;
 import br.gov.am.prodam.infracao.dto.MunicipioFiltro;
 
 public interface MunicipioDAO {
 	
-	public List<Municipio> pesquisar(MunicipioFiltro filtro);
+	public Page<Municipio> pesquisar(MunicipioFiltro filtro, Pageable pageable);
 	
 }
