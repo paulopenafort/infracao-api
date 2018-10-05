@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -50,6 +51,17 @@ public class MunicipioController extends BasicController {
 	public MunicipioDTO findById(@PathParam("municipioId") Long id) {
 		Municipio municipio = municipioService.findById(id).get();
 		return map(municipio, MunicipioDTO.class);
+	}
+	
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{municipioId}")
+	public Response atualizar(@PathParam("municipioId") Long id,@Valid MunicipioDTO dto) {
+		Municipio municipio = map(dto, Municipio.class);		
+		municipio.setId(id);
+		municipioService.update(municipio);		
+		return ok("Municipio atualizado com sucesso!");
 	}
 
 	@DELETE
