@@ -16,11 +16,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import br.gov.am.prodam.infracao.domain.Municipio;
 import br.gov.am.prodam.infracao.dto.MunicipioDTO;
 import br.gov.am.prodam.infracao.dto.MunicipioFiltro;
+import br.gov.am.prodam.infracao.dto.Paginacao;
 import br.gov.am.prodam.infracao.service.MunicipioService;
 
 @Component
@@ -33,9 +35,9 @@ public class MunicipioController extends BasicController {
 	@GET
 	@Path("/pesquisar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<MunicipioDTO> pesquisar(@BeanParam MunicipioFiltro filtro) {
-		List<Municipio> municipios = municipioService.pesquisar(filtro);
-		return mapList(municipios, MunicipioDTO.class);
+	public Page<MunicipioDTO> pesquisar(@BeanParam MunicipioFiltro filtro, @BeanParam Paginacao paginacao) {
+		Page<Municipio> page = municipioService.pesquisar(filtro, paginacao.toPageable());
+		return page.map(item -> map(item, MunicipioDTO.class));
 	}
 
 	@GET
