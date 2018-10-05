@@ -10,8 +10,6 @@ public class VeiculoDTO {
 	
 	private String renavam;
 	
-	private String foto;
-	
 	private int anoModelo;
 	
 	private String cor;
@@ -20,31 +18,7 @@ public class VeiculoDTO {
 	
 	private String nome;
 	
-	
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
+	private String foto;
 
 	public Long getId() {
 		return id;
@@ -70,20 +44,44 @@ public class VeiculoDTO {
 		this.renavam = renavam;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public int getAnoModelo() {
 		return anoModelo;
 	}
 
 	public void setAnoModelo(int anoModelo) {
 		this.anoModelo = anoModelo;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override
@@ -149,8 +147,5 @@ public class VeiculoDTO {
 			return false;
 		return true;
 	}
-
 	
-	
-
 }

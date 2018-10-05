@@ -41,7 +41,7 @@ public class AgenteTransito {
 	@ManyToOne
 	@JoinColumn(name = "ID_ORGAO_AUTUADOR", nullable = false)
 	private OrgaoAutuador orgaoAutuador;
-	
+
 	public AgenteTransito() {
 	}
 

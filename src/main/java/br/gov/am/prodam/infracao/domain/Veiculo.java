@@ -17,12 +17,12 @@ public class Veiculo {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VEICULO_GENERATOR")
 	private Long id;
 	
-	@Column(name = "PLACA", nullable = false, length = 8)
+	@Column(name = "PLACA", nullable = false, length = 8, unique=true)
 	private String placa;
 	
 	@Column(name = "RENAVAM", nullable = false, length = 15)
 	private String renavam;
-	
+
 	@Column(name = "FOTO", columnDefinition = "BLOB")
 	@Lob
 	private String foto;
@@ -38,22 +38,6 @@ public class Veiculo {
 	
 	@Column(name = "NOME", nullable = false)
 	private String nome;
-	
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public int getAnoModelo() {
-		return anoModelo;
-	}
-
-	public void setAnoModelo(int anoModelo) {
-		this.anoModelo = anoModelo;
-	}
 
 	public Long getId() {
 		return id;
@@ -85,6 +69,22 @@ public class Veiculo {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public int getAnoModelo() {
+		return anoModelo;
+	}
+
+	public void setAnoModelo(int anoModelo) {
+		this.anoModelo = anoModelo;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 	public String getMarca() {
@@ -166,5 +166,8 @@ public class Veiculo {
 			return false;
 		return true;
 	}
+	
+	
+	
 
 }

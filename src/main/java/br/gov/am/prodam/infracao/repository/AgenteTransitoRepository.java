@@ -10,7 +10,6 @@ import br.gov.am.prodam.infracao.domain.OrgaoAutuador;
 
 @Repository
 public interface AgenteTransitoRepository extends JpaRepository<AgenteTransito, Long> {
-
 	public List<AgenteTransito> findByOrgaoAutuador(OrgaoAutuador orgaoAutuador);
 
 }

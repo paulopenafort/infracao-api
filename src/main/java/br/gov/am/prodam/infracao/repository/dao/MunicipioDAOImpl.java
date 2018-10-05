@@ -19,13 +19,14 @@ public class MunicipioDAOImpl implements MunicipioDAO{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<Municipio> pesquisar(MunicipioFiltro filtro) {
 		
-		Map<String, Object> params = new HashMap<>(); 
+		Map<String, Object> params = new HashMap<>();
 		
-		String jpql = " select cidade from Municipio cidade where 1=1 ";
+		String jpql = " select cidade from Municipio inf where 1=1 ";
+
 		
 		if (filtro.getNome() != null) {
 			jpql += "and cidade.nome = :nome";

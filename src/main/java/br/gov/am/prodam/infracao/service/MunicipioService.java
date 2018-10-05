@@ -1,5 +1,6 @@
 package br.gov.am.prodam.infracao.service;
 
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class MunicipioService extends BasicService<Municipio, Long, MunicipioRep
 	public List<Municipio> pesquisar(MunicipioFiltro filtro) {
 		return repository.pesquisar(filtro);
 //		return  br.gov.am.prodam.infracao.repository.dao.MunicipioDAO.pesquisar(filtro);
+
+
 
 	}
 

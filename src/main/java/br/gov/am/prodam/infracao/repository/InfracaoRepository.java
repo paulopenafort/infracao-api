@@ -12,9 +12,6 @@ import br.gov.am.prodam.infracao.repository.dao.InfracaoDAO;
 @Repository
 public interface InfracaoRepository extends JpaRepository<Infracao, Long>, InfracaoDAO {
 	
-	
 	public List<Infracao> findByCompetencia(String competencia, Pageable pageable);
-	
-	
 
 }
