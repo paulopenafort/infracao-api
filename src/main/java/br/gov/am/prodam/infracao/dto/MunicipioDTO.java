@@ -7,6 +7,8 @@ public class MunicipioDTO {
 	private String nome;
 	
 	private String descricao;
+	
+	private String foto;
 
 	public Long getId() {
 		return id;
@@ -30,6 +32,14 @@ public class MunicipioDTO {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 	
